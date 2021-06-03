@@ -1,10 +1,10 @@
-const modals = () => {
+const modals = (state) => {
     function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
         const trigger = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
               close = document.querySelector(closeSelector),
               windows = document.querySelectorAll('[data-modal]');
-        
+
         trigger.forEach(item => {
             item.addEventListener('click', (evt) => {
                 if (evt.target) {
@@ -12,7 +12,7 @@ const modals = () => {
                 }
 
                 windows.forEach(item => {
-                    item.style.display = 'none';
+                    item.style.display = 'none';    
                 });
                 
                 modal.style.display = 'block';
@@ -21,27 +21,27 @@ const modals = () => {
             });
         });
     
-            close.addEventListener('click', () => {
+        close.addEventListener('click', () => {
+            windows.forEach(item => {
+                item.style.display = 'none';
+            });
+
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            // document.body.classList.remove('modal-open');
+        });
+
+        modal.addEventListener('click', (evt) => {
+            if (evt.target === modal && closeClickOverlay) {
                 windows.forEach(item => {
                     item.style.display = 'none';
                 });
 
                 modal.style.display = 'none';
                 document.body.style.overflow = '';
-                // document.body.classList.remove('modal-open');
-            });
-
-            modal.addEventListener('click', (evt) => {
-                if (evt.target === modal && closeClickOverlay) {
-                    windows.forEach(item => {
-                        item.style.display = 'none';
-                    });
-
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
-                    // document.body.classList.add('modal-open');
-                }
-            });
+                // document.body.classList.add('modal-open');
+            }
+        });
     }
 
     function openModalByTime(modalSelector, time) {
