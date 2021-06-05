@@ -6,15 +6,12 @@ const changeModalState = (state) => {
           windowHeight = document.querySelectorAll('#height'),
           windowType = document.querySelectorAll('#view_type'),
           windowProfile = document.querySelectorAll('.checkbox');
-    
-    let counter = 0;
 
     checkNumInputs('#width');
     checkNumInputs('#height');
 
     function bindActionToElement(event, element, prop) {
         element.forEach((item, i) => {
-            
             item.addEventListener(event, () => {
                 switch(item.nodeName) {
                     case 'SPAN': state[prop] = i;
@@ -34,24 +31,21 @@ const changeModalState = (state) => {
                             if (state[prop]) {
                                 document.querySelector('.popup_calc_profile_button').removeAttribute('disabled');
                             }
-
+                            
                         } else {
                             state[prop] = item.value;
-                            if (state[prop]) {
-                                counter++;
-                            }
-                            if (counter > 1) {
-                                document.querySelector('.popup_calc_button').removeAttribute('disabled');
-                            }
-                        }    
+                        }  
                     break;
 
                     case 'SELECT': state[prop] = item.value;
                     break;
                 }
 
-
-
+                if (document.querySelector('.popup_calc').style.display === 'block') {
+                    if (state.width && state.height) {
+                        document.querySelector('.popup_calc_button').removeAttribute('disabled');
+                    } 
+                }
                 console.log(state);
             });
         });

@@ -55,6 +55,7 @@ const forms = (state) => {
                     statusMessage.textContent = status.success;
                     console.log(res);
                     state = {};
+                    document.querySelector('.popup_calc_button').disabled = true;
                 })
                 .catch(() => statusMessage.textContent = status.failure)
                 .finally(() => {

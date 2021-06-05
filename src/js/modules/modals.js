@@ -4,7 +4,7 @@ const modals = (state) => {
               modal = document.querySelector(modalSelector),
               close = document.querySelector(closeSelector),
               windows = document.querySelectorAll('[data-modal]');
-
+          
         trigger.forEach(item => {
             item.addEventListener('click', (evt) => {
                 if (evt.target) {
@@ -17,7 +17,7 @@ const modals = (state) => {
                 
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-                // document.body.classList.add('modal-open');
+                // document.body.classList.add('modal-open'); 
             });
         });
     
@@ -59,7 +59,7 @@ const modals = (state) => {
     bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
 
 
-    // openModalByTime('.popup', 60000);
+    openModalByTime('.popup', 60000);
 };
 
 export default modals;
