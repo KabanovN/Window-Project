@@ -11,6 +11,7 @@ const images = () => {
     imgModal.style.display = 'none';
 
     bigImg.style.maxWidth = '50%';
+    bigImg.style.height = 'auto';
     imgModal.append(bigImg);
 
     workSection.addEventListener('click', (evt) => {
@@ -22,11 +23,12 @@ const images = () => {
             imgModal.style.display = 'flex';
             const path = target.parentNode.getAttribute('href');
             bigImg.src = path;
+            document.body.style.overflow = 'hidden';
         }
 
         if (target && target.matches('div.popup')) {
             imgModal.style.display = 'none';
-            console.log('ok');
+            document.body.style.overflow = '';
         }
     });
 };
